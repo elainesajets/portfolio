@@ -1,0 +1,44 @@
+---
+title: Blog
+layout: base.njk
+---
+<h1>Blog</h1>
+
+<div class="blog-grid">
+  <!-- Left: compact list -->
+  <aside class="blog-list">
+    <h2>All entries</h2>
+    <ul>
+      {% for post in collections.post | reverse %}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+          <small class="muted"> — {{ post.date | readableDate }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>
+
+  <!-- Right: previews -->
+  <section class="blog-previews">
+    {% for post in collections.post | reverse %}
+      <article class="post-card">
+        <h2 class="post-title">
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </h2>
+        <p class="post-meta">{{ post.date | readableDate }}</p>
+        
+        {% if post.data.draft %}
+            <span class="badge-draft">Draft</span>
+          {% endif %}
+
+        {# Preview logic:
+           1) If description front matter exists, use that.
+           2) Else, take first ~40 words of the content (HTML-stripped). #}
+        {% set preview = post.data.description or (post.templateContent | striptags | truncate(360, true, '…')) %}
+        <p class="post-excerpt">{{ preview }}</p>
+
+        <a class="post-readmore" href="{{ post.url }}">Les mer →</a>
+      </article>
+    {% endfor %}
+  </section>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title or "Elaine Sajets" }}</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <article class="prose">
+        {{ content | safe }}
+      </article>
+    </main>
+    <script src="/assets/main.js" defer></script>
+  </body>
+</html>
