@@ -1,4 +1,4 @@
-# Elaine Sajets — Portfolio Website
+# Elaine Sajets — Portfolio Website - WIP
 
 This repository contains the source code for my personal portfolio, built with **HTML**, **CSS**, **JavaScript**, and **Eleventy (11ty)**, and deployed on **Netlify**.
 
