@@ -1,4 +1,8 @@
 module.exports = function (eleventyConfig) {
+  // Ignore drafts folder in production builds
+  if (process.env.ELEVENTY_RUN_MODE === 'build') {
+    eleventyConfig.ignores.add('./src/posts/drafts/**');
+  }
   // Copy assets as-is
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
 
@@ -11,16 +15,25 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addGlobalData('eleventyComputed', {
+    eleventyExcludeFromCollections: (data) =>
+      data.draft === true && process.env.ELEVENTY_RUN_MODE === 'build',
+    permalink: (data) =>
+      data.draft === true && process.env.ELEVENTY_RUN_MODE === 'build'
+        ? false
+        : data.permalink,
+  });
+
   // Posts collection:
   // - Exclude drafts/future posts in production
   // - Always set clean permalink /blog/<slug>/
   eleventyConfig.addCollection('post', (collection) => {
-    const isProd = process.env.ELEVENTY_ENV === 'production';
+    const isBuild = process.env.ELEVENTY_RUN_MODE === 'build';
     return collection
       .getFilteredByTag('post')
       .filter((item) => {
-        if (isProd && item.data.draft) return false;
-        if (isProd && item.date > new Date()) return false;
+        if (isBuild && item.data.draft) return false;
+        if (isBuild && item.date > new Date()) return false;
         return true;
       })
       .map((item) => {
