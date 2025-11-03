@@ -1,17 +1,44 @@
-<!DOCTYPE html>
-<html lang="no">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{{ title or "Elaine Sajets" }}</title>
-    <link rel="stylesheet" href="/assets/styles.css" />
-  </head>
-  <body>
-    <main class="container">
-      <article class="prose">
-        {{ content | safe }}
-      </article>
-    </main>
-    <script src="/assets/main.js" defer></script>
-  </body>
+<!doctype html>
+<html lang="en" data-theme="mocha" class="theme-mocha">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title | safe }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/styles.css">
+  
+
+{% block head %}
+{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand">Elaine</a>
+    <nav class="nav">
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    {% block content %}{{ content | safe }}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>© Elaine Sajets</p>
+  </footer>
+  {% block footer %}
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/prism-clike.js"></script>  
+  <script src="/assets/js/prism-csharp.js"></script>
+  <script src="/assets/js/prism-markup.js"></script>
+  <script src="/assets/js/prism-css.js"></script>
+  <script src="/assets/js/prism-javascript.js"></script>
+  <script>window.Prism && Prism.highlightAll();</script>
+{% endblock %}
+</body>
 </html>

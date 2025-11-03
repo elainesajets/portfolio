@@ -6,20 +6,20 @@ layout: base.njk
 
 <div class="blog-grid">
   <!-- Left: compact list -->
-  <aside class="blog-list">
+  <aside class="blog-sidebar">
     <h2>All entries</h2>
     <ul>
       {% for post in collections.post | reverse %}
         <li>
-          <a href="{{ post.url }}">{{ post.data.title }}</a>
-          <small class="muted"> — {{ post.date | readableDate }}</small>
+          <a href="{{ post.url }}">{{ post.data.title | truncate(45, true, '…') }}</a>
+          <small class="muted"> {{ post.date | readableDate }}</small>
         </li>
       {% endfor %}
     </ul>
   </aside>
 
   <!-- Right: previews -->
-  <section class="blog-previews">
+  <section class="blog-main">
     {% for post in collections.post | reverse %}
       <article class="post-card">
         <h2 class="post-title">

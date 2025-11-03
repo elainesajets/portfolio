@@ -1,0 +1,14 @@
+{% extends "./base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/assets/css/post.css">
+{% endblock %}
+
+{% block content %}
+<article class="post">
+  <h1>{{ title }}</h1>
+  {% if date %}<p class="post-meta">{{ date | readableDate }}</p>{% endif %}
+  {{ content | safe }}
+</article>
+{% endblock %}

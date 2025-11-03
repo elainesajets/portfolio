@@ -1,10 +1,17 @@
 ---
 title: "Study Log: First day of GameDev.tv's Complete Unity 2D Developer: Design & Develop Games in Unity 6 using C#"
-description: 'My first blog post and the start of logging my game development learning journey.'
 date: 2025-10-31
+layout: post.njk
+description: 'My first blog post and the start of logging my game development learning journey.'
 tags: [blog, gamedev.tv, studylog, post]
 draft: true
 ---
+
+<pre class="language-csharp"><code class="language-csharp">
+if (Keyboard.current.wKey.isPressed) {
+    transform.Translate(0, moveSpeed, 0);
+}
+</code></pre>
 
 ## Some background
 
